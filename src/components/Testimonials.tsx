@@ -306,7 +306,7 @@ const CLIENT_LOGOS = [
   { alt: 'Writeeasy', src: '/clients/we.svg' },
   { alt: 'Hotel Green Peace', src: '/clients/pz.webp' },
   { alt: 'Sulav Kharel', src: '/clients/Sulav_kharel.jpeg' },
-  { alt: 'Siddhartha Hospitality', src: '/clients/Siddhartha_hospitality.jpeg' },
+  { alt: 'Siddhartha Hospitality', src: '/clients/Siddhartha_hospitality.jpg' },
   { alt: 'Kalika Manavgyan Secondary School', src: '/clients/kalika.jpg' },
   { alt: 'Krish Marble And Tiles', src: '/clients/krish_marble.jpg' },
   { alt: 'Rohan Trade Link', src: '/clients/rohan_trade_link.jpg' },

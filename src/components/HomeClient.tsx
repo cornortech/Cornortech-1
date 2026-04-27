@@ -12,6 +12,7 @@ import CTA from '@/components/ui/CTA'
 import TechStack from '@/components/TechStack'
 import ContactUs from '@/components/ContactUs'
 import AboutUs from '@/components/AboutUs'
+import Products from '@/components/Products'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 import { useState } from 'react';
 
@@ -29,13 +30,15 @@ export default function Home() {
       <main>
         <Hero bannerVisible={bannerVisible}/>
         <Services/>
-        <ScrollToTopButton/>
+        <Products/>
+        {/* <ScrollToTopButton/> */}
         <CTA/>
         <TechStack/>
         <OurWorks/>
         <Testimonials />
         <AboutUs/>
         <ContactUs/>
+        <script type="module" src="https://widget.yeticodecrew.com/index.js?clientId=demo-client-abc-123&theme=light" async></script>
       </main>
       <Footer />
     </div>
