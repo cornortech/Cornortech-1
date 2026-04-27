@@ -186,7 +186,7 @@ export default function CareersPage() {
 
                                         <div className="shrink-0">
                                             <a
-                                                href={`mailto:careers@cornortech.com?subject=Application — ${job.role}`}
+                                                href={`mailto:info@cornortech.com?subject=Application — ${job.role}`}
                                                 className="flex items-center justify-center gap-2 px-8 py-4
                                                            bg-[#9333EA] text-white rounded-2xl text-sm font-black
                                                            hover:bg-[#7c3aed] hover:shadow-xl hover:shadow-purple-500/20 
