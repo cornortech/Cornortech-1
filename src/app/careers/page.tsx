@@ -69,7 +69,7 @@ export default function CareersPage() {
                             </svg>
                         </a>
                         <a
-                            href="mailto:careers@cornortech.com"
+                            href="mailto:info@cornortech.com"
                             className="flex items-center gap-2 px-6 py-3 bg-white/10 text-white border border-white/20 rounded-xl font-semibold hover:bg-white/20 transition-colors"
                         >
                             <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24">
