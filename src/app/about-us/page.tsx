@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
 
 interface TeamMember {
@@ -227,7 +227,7 @@ const AboutUsPage = () => {
                 </div>
                 {/* End Background decorative elements */}
 
-                <ScrollToTopButton />
+                {/* <ScrollToTopButton /> */}
                 <CTA />
 
                 <div className="container-custom relative z-10 space-y-16">

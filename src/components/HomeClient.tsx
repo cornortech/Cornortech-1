@@ -7,11 +7,12 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services'
 import OurWorks from '@/components/OurWorks'
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
 import TechStack from '@/components/TechStack'
 import ContactUs from '@/components/ContactUs'
 import AboutUs from '@/components/AboutUs'
+import Products from '@/components/Products'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 import { useState } from 'react';
 
@@ -29,7 +30,8 @@ export default function Home() {
       <main>
         <Hero bannerVisible={bannerVisible}/>
         <Services/>
-        <ScrollToTopButton/>
+        <Products/>
+        {/* <ScrollToTopButton/> */}
         <CTA/>
         <TechStack/>
         <OurWorks/>

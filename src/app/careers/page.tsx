@@ -3,7 +3,7 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Link from 'next/link';
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
 import { OPENINGS } from '@/data/openings';
 
@@ -83,7 +83,7 @@ export default function CareersPage() {
             </section>
             {/* ==== End Hero ==== */}
 
-            <ScrollToTopButton/>
+            {/* <ScrollToTopButton/> */}
             <CTA/>
 
             {/* ==== Perks section ==== */}
