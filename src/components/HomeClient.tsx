@@ -7,7 +7,7 @@ import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services'
 import OurWorks from '@/components/OurWorks'
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
 import TechStack from '@/components/TechStack'
 import ContactUs from '@/components/ContactUs'
@@ -38,7 +38,6 @@ export default function Home() {
         <Testimonials />
         <AboutUs/>
         <ContactUs/>
-        <script type="module" src="https://widget.yeticodecrew.com/index.js?clientId=demo-client-abc-123&theme=light" async></script>
       </main>
       <Footer />
     </div>

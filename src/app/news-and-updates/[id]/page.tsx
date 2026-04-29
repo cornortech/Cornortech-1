@@ -5,7 +5,7 @@ import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ARTICLES } from '@/data/news';
 import { notFound } from 'next/navigation';
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton';
 import CTA from '@/components/ui/CTA';
 
 export async function generateStaticParams() {
@@ -125,7 +125,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                 </div>
                 {/* ===== End Hero Section ===== */}
                 
-                <ScrollToTopButton/>
+                {/* <ScrollToTopButton/> */}
                 <CTA/>
                 
                 {/* ===== Article Image Section ===== */}
@@ -133,7 +133,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ id: st
                     <div className="w-full flex justify-center py-12">
 
                         {/* articleImage container */}
-                        <div className="w-[448px] relative aspect-video rounded-2xl overflow-hidden shadow-2xl group/banner">
+                        <div className="w-md relative aspect-video rounded-2xl overflow-hidden shadow-2xl group/banner">
                             <img
                                 src={article.articleImage}
                                 alt={article.title}

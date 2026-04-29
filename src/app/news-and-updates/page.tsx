@@ -4,7 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { ARTICLES, NewsArticle } from '@/data/news';
-import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
+// import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA';
 
 export const metadata = {
@@ -12,14 +12,14 @@ export const metadata = {
     description: 'Latest news, articles, and updates from Cornor Tech Pvt. Ltd.',
 };
 
-// ── OG metadata type ──────────────────────────────────────────
+// OG metadata type 
 interface OGData {
     title: string;
     description: string;
     image: string | null;
 }
 
-// ── Fetch OG tags from a URL (server-side) ────────────────────
+// Fetch OG tags from a URL (server-side) 
 async function fetchOG(url: string): Promise<OGData> {
     try {
         const res = await fetch(url, {
@@ -48,10 +48,10 @@ async function fetchOG(url: string): Promise<OGData> {
     }
 }
 
-// ── Article type ──────────────────────────────────────────────
+// Article type 
 type Article = NewsArticle & { og: OGData };
 
-// ── News Card (Horizontal) — social preview style ──────────────────
+//  News Card (Horizontal) — social preview style 
 const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article; isFeatured?: boolean }) => (
 
     <Link href={article.href}
@@ -189,7 +189,7 @@ const NewsCardHorizontal = ({ article, isFeatured = false }: { article: Article;
     </Link>
 );
 
-// ── Empty State ───────────────────────────────────────────────
+// Empty State 
 const EmptyState = () => (
     <div className="flex flex-col items-center justify-center py-32 text-center">
         <div className="w-14 h-14 rounded-2xl bg-[#9333EA]/08 border border-[#9333EA]/15 flex items-center justify-center mb-4">
@@ -202,7 +202,7 @@ const EmptyState = () => (
     </div>
 );
 
-// ── Page (Server Component — fetches OG data at build time) ───
+// Page (Server Component — fetches OG data at build time) 
 export default async function BlogsPage() {
 
     // Fetch OG metadata for all articles in parallel
@@ -314,7 +314,7 @@ export default async function BlogsPage() {
                 </div>
                 {/* ===== End Heading Section ===== */}
 
-                <ScrollToTopButton />
+                {/* <ScrollToTopButton /> */}
                 <CTA />
 
                 {/* ===== Articles Section ===== */}
