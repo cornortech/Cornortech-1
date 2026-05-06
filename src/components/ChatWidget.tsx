@@ -62,6 +62,12 @@ const ChatWidget = () => {
         scrollToBottom();
     }, [messages]);
 
+    useEffect(() => {
+        const handleOpenChat = () => setIsOpen(true);
+        window.addEventListener('openChatWidget', handleOpenChat);
+        return () => window.removeEventListener('openChatWidget', handleOpenChat);
+    }, []);
+
     const handleSendMessage = async () => {
         if (!inputValue.trim()) return;
 

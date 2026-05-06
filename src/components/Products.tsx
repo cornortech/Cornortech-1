@@ -75,7 +75,17 @@ const ProductCard = ({ title, description, image, link, variant, delay = 0 }: Pr
               }}
             >
               {i === 4 && (
-                <Link href={link} target="_blank" className="flex flex-col items-center justify-center h-full w-full group/demo">
+                <Link 
+                  href={link} 
+                  target={link.startsWith('http') ? "_blank" : undefined}
+                  onClick={(e) => {
+                    if (link === '#chat') {
+                      e.preventDefault();
+                      window.dispatchEvent(new CustomEvent('openChatWidget'));
+                    }
+                  }}
+                  className="flex flex-col items-center justify-center h-full w-full group/demo"
+                >
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 fill-white transition-transform group-hover/demo:scale-125">
                     <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
                   </svg>
@@ -125,7 +135,7 @@ const Products = () => {
       title: "Cornortech AI",
       description: "Advanced AI-driven analytics, predictive modeling, and intelligent automation tailored for your needs.",
       image: "/products/cornortechAI.png",
-      link: "#",
+      link: "#chat",
       variant: 'right' as const
     }
   ];
