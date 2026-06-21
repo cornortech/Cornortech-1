@@ -9,11 +9,13 @@ import { usePathname, useRouter } from 'next/navigation';
 
 interface HeaderProps {
   bannerVisible?: boolean;
+  solidBg?: boolean;
 }
 
-const Header = ({ bannerVisible = false }: HeaderProps) => {
+const Header = ({ bannerVisible = false, solidBg = false }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const isScrolled = useHeaderScroll();
+  const scrolledOrSolid = isScrolled || solidBg;
   const router = useRouter();
   // const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   // const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -67,7 +69,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
 
   return (
     <header
-      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(isScrolled || isMobileMenuOpen)
+      className={`fixed left-0 right-0 z-50 transition-all duration-300 ${(scrolledOrSolid || isMobileMenuOpen)
         ? 'top-0 bg-white shadow-soft border-b border-gray-200'
         : `${bannerVisible ? 'top-10' : 'top-0'} bg-transparent border-b border-transparent`
         }`}
@@ -152,7 +154,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
               <button
                 key={item.title}
                 onClick={() => handleNavClick(item)}
-                className={`cursor-pointer transition-colors font-medium text-sm ${isScrolled ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
+                className={`cursor-pointer transition-colors font-medium text-sm ${scrolledOrSolid ? 'text-foreground hover:text-[#9333EA]' : 'text-white hover:text-purple-300'
                   }`}
               >
                 {item.title}
@@ -171,7 +173,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                   <button
                     key={item.title}
                     onClick={() => handleNavClick(item)}
-                    className={`cursor-pointer shrink-0 px-2.5 py-1 rounded-full text-[12px] font-medium whitespace-nowrap transition-colors ${isScrolled
+                    className={`cursor-pointer shrink-0 px-2.5 py-1 rounded-full text-[12px] font-medium whitespace-nowrap transition-colors ${scrolledOrSolid
                       ? 'text-gray-700 hover:text-[#9333EA] hover:bg-purple-50'
                       : 'text-white/90 hover:text-white hover:bg-white/10'
                       }`}
@@ -192,7 +194,7 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
                 <a
                   key={social.name}
                   href={social.href}
-                  className={`w-9 h-9 flex items-center justify-center rounded-lg hover:scale-110 transition-all duration-200 ${isScrolled ? 'text-[#111827] hover:bg-[#111827]/5' : 'text-white hover:bg-white/10'
+                  className={`w-9 h-9 flex items-center justify-center rounded-lg hover:scale-110 transition-all duration-200 ${scrolledOrSolid ? 'text-[#111827] hover:bg-[#111827]/5' : 'text-white hover:bg-white/10'
                     }`}
                   aria-label={social.name}
                   title={social.name}
@@ -205,17 +207,17 @@ const Header = ({ bannerVisible = false }: HeaderProps) => {
             </div>
 
             <button
-              className={`md:hidden p-2 rounded-lg transition-colors ${(isScrolled || isMobileMenuOpen) ? 'hover:bg-[#111827]/5' : 'hover:bg-white/10'
+              className={`md:hidden p-2 rounded-lg transition-colors ${(scrolledOrSolid || isMobileMenuOpen) ? 'hover:bg-[#111827]/5' : 'hover:bg-white/10'
                 }`}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle menu"
             >
               <div className="w-5 h-4 flex flex-col justify-between">
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(scrolledOrSolid || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
                   } ${isMobileMenuOpen ? 'rotate-45 translate-y-1.75' : ''}`} />
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(scrolledOrSolid || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
                   } ${isMobileMenuOpen ? 'opacity-0 scale-x-0' : ''}`} />
-                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(isScrolled || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
+                <span className={`block h-0.5 w-full rounded-full transition-all duration-300 ${(scrolledOrSolid || isMobileMenuOpen) ? 'bg-foreground' : 'bg-white'
                   } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2.25' : ''}`} />
               </div>
             </button>

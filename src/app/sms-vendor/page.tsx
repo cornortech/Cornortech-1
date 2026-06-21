@@ -159,7 +159,7 @@ export default function SmsVendorPage() {
 
   return (
     <>
-      <Header />
+      <Header solidBg />
       <main>
         <section className="relative py-20 lg:py-32 bg-[#faf8ff] overflow-hidden font-sans">
           {/* Dot grid */}
