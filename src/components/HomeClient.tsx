@@ -6,7 +6,6 @@ import Hero from '@/components/Hero';
 import Testimonials from '@/components/Testimonials';
 import Footer from '@/components/Footer';
 import Services from '@/components/Services'
-import SmsVendor from '@/components/SmsVendor'
 import OurWorks from '@/components/OurWorks'
 // import ScrollToTopButton from '@/components/ui/ScrollToTopButton'
 import CTA from '@/components/ui/CTA'
@@ -31,7 +30,6 @@ export default function Home() {
       <main>
         <Hero bannerVisible={bannerVisible}/>
         <Services/>
-        <SmsVendor/>
         <Products/>
         {/* <ScrollToTopButton/> */}
         <CTA/>

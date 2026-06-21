@@ -18,17 +18,17 @@ const ProductCard = ({ title, description, image, link, variant, delay = 0 }: Pr
 
   // Design tokens based on variant
   const theme = isLeft ? {
-    gradient: 'bg-linear-to-br from-[#00ffd6] to-[#08e260]',
-    glassBg: 'bg-linear-to-b from-white/80 to-white/30',
-    titleColor: 'text-[#00894d]',
-    textColor: 'text-[#00894d]/80',
-    circleBg: 'bg-[#00f9cb]/20',
+    gradient: 'bg-linear-to-br from-[#6a5acd] to-[#9370db]',
+    glassBg: 'bg-linear-to-b from-white/70 to-white/20',
+    titleColor: 'text-[#3c2f80]',
+    textColor: 'text-[#3c2f80]/80',
+    circleBg: 'bg-[#9370db]/30',
     perspective: '[perspective:1000px]',
     rotateHover: 'group-hover:[transform:rotate3d(1,1,0,30deg)]',
     logoSide: 'right-0',
     glassRounded: 'rounded-tr-[100%]',
     glassBorder: 'border-l border-b',
-    shadowHover: 'group-hover:shadow-[rgba(5,71,17,0.3)_30px_50px_25px_-40px,rgba(5,71,17,0.1)_0px_25px_30px_0px]',
+    shadowHover: 'group-hover:shadow-[rgba(30,30,60,0.3)_30px_50px_25px_-40px,rgba(30,30,60,0.15)_0px_25px_30px_0px]',
   } : {
     gradient: 'bg-linear-to-br from-[#6a5acd] to-[#9370db]',
     glassBg: 'bg-linear-to-b from-white/70 to-white/20',
@@ -136,7 +136,14 @@ const Products = () => {
       description: "Advanced AI-driven analytics, predictive modeling, and intelligent automation tailored for your needs.",
       image: "/products/cornortechAI.png",
       link: "#chat",
-      variant: 'right' as const
+      variant: 'left' as const
+    },
+    {
+      title: "Cornor SMS",
+      description: "Reliable, scalable SMS solutions — bulk messaging, OTP, API integration, and more for your business.",
+      image: "/products/cornor_sms.png",
+      link: "/sms-vendor",
+      variant: 'left' as const
     }
   ];
 
@@ -213,7 +220,7 @@ const Products = () => {
         </div>
 
         {/* ── Products Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-20 lg:gap-32 max-w-6xl mx-auto items-center justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 max-w-6xl mx-auto items-center justify-items-center">
           {products.map((product, idx) => (
             <ProductCard
               key={product.title}
