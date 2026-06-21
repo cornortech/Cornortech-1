@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     'Cornor Tech',
     'software company Nepal',
   ],
-  authors: [{ name: 'Cornor Tech printTreeView. Ltd' }],
+  authors: [{ name: 'Cornor Tech Pvt. Ltd' }],
   creator: 'Cornor Tech Pvt. Ltd',
   metadataBase: new URL('https://cornortech.com'), // real domain
   alternates: {
