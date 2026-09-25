@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #090c14;
+  --foreground-secondary: #090C14;
+  --accent-cyan: #C8F8FF;
+  --dark-teal: #00303B;
+  --fill-bg: #111a20;
+  --bg-overlay: #2a435e14;
+  --divider: #111a2066;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-foreground-secondary: var(--foreground-secondary);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-dark-teal: var(--dark-teal);
+  --color-fill-bg: var(--fill-bg);
+  --color-bg-overlay: var(--bg-overlay);
+  --color-divider: var(--divider);
+  --font-sans: var(--font-inter);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--foreground) 0%, var(--dark-teal) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-gradient-primary {
+    background: linear-gradient(135deg, var(--dark-teal) 0%, #9333EA 100%);
+  }
+  
+  .bg-gradient-secondary {
+    background: linear-gradient(135deg, var(--accent-cyan) 0%, #94e8ff 100%);
+  }
+  
+   .bg-gradient-hero {
+    background: linear-gradient(135deg, 
+      rgba(0, 48, 59, 0.02) 0%, 
+      rgba(200, 248, 255, 0.05) 50%, 
+      rgba(0, 48, 59, 0.02) 100%
+    );
+  } 
+  
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+  
+  .hover-scale {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .container-custom {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  @media (max-width: 768px) {
+    .container-custom {
+      padding: 0 16px;
+    }
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--dark-teal);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--foreground);
+  }
+
+  /* Selection styles */
+  ::selection {
+    background: var(--accent-cyan);
+    color: var(--foreground);
+  }
+
+  /* Focus styles */
+  button:focus-visible,
+  a:focus-visible {
+    outline: 2px solid var(--dark-teal);
+    outline-offset: 2px;
+  }
+
+  /* Loading animation */
+  .skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  /* Staggered animation classes */
+  .stagger-item {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: staggerIn 0.6s ease-out forwards;
+  }
+
+  @keyframes staggerIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Parallax effect */
+  .parallax {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Button ripple effect */
+  .ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+
+  .ripple:active::before {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+/* Hides scrollbar from Mobile NavItems */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Disable Select Text */
+body {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Re-enable for inputs and textareas so forms still work */
+input, textarea {
+  -webkit-user-select: text;
+  user-select: text;
+}
