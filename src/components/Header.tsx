@@ -21,15 +21,23 @@ const Header = ({ bannerVisible = false, solidBg = false }: HeaderProps) => {
   // const dropdownTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const pathname = usePathname();
 
- const navigationItems = [
+const navigationItems = [
     { title: 'Home', id: 'hero', type: 'scroll' },
     { title: 'Services', id: 'services', type: 'scroll' },
     { title: 'About Us', path: '/about-us', type: 'page' },
     { title: 'Our Works', id: 'our-works', type: 'scroll' },
     { title: 'Products', path: '/products', type: 'page' },
     { title: 'Career', path: '/careers', type: 'page' },
-];
-
+    
+    // {
+    //   title: 'More',
+    //   type: 'dropdown',
+    //   children: [
+    //     { title: 'Blogs', path: '/blogs' },
+    //     { title: 'News & Updates', path: '/news-and-updates' },
+    //   ],
+    // }
+  ];
   // const dropdownChildren = navigationItems
   //   .filter((item) => item.type === 'dropdown')
   // .flatMap((item: any) => item.children ?? []);
