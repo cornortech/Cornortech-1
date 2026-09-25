@@ -185,7 +185,7 @@ A live business dashboard rounds out the system, showing today's sales, transact
 
 Whether it's a single small shop or a growing chain of retail outlets, Artha POS scales with the business, with support for multiple terminal modes, including a Juice Shop Mode built for fast, size-and-flavour-based beverage ordering.`,
     logo: '/products/artha pos.png',
-    image: '/products/ARTHA POS.png',
+    image: '/products/POS-Dashboard.jpg',
     loginUrl: 'https://artha.cornortech.com',
     features: [
       { title: 'Fast Billing', desc: 'Barcode and camera-based scanning, product search, quick quantity adjustments, held bills, and automatic VAT calculation.', image: '/products/artha/fast-billing.png' },
@@ -262,7 +262,7 @@ A live AI operations dashboard rounds out the system, showing today's API reques
 
 Whether it's a single custom automation script for a growing startup or an enterprise-wide suite of AI solutions, Cornor Tech AI scales with the organization, supporting multi-environment deployments and tailored AI integration modes built for high-speed, intelligent business operations.`,
     logo: '/products/conor ai.png',
-    image: '/products/cornor ai.png',
+    image: '/products/Chat-Ai.webp',
     loginUrl: 'https://cornortech.com',
     features: [
       { title: 'Intelligent Automation', desc: 'Custom AI workflows, automated document processing, smart chatbots, and trigger-based task execution.', image: '/products/cornor-ai/automation.png' },
@@ -301,7 +301,7 @@ A live messaging analytics dashboard rounds out the platform, showing today's to
 
 Whether it's a startup sending verification codes or an enterprise running nationwide promotional campaigns, Cornor SMS scales effortlessly to meet high-volume communication demands with speed and reliability.`,
     logo: '/products/cornor ss.png',
-    image: '/products/cornor-sms.png',
+    image: '/products/SMS.jpg',
     loginUrl: 'https://cornortech.com/sms-vendor',
     features: [
       { title: 'Bulk SMS Broadcasts', desc: 'Send high-volume messages to large audiences with fast delivery speeds.', image: '/products/cornor-sms/bulk.png' },
@@ -340,7 +340,7 @@ A live clinic dashboard rounds out the system, showing today's sales, transactio
 
 Whether it's a single small clinic or a growing chain of healthcare outlets, Arogya CMSS scales with the medical practice, with support for multiple terminal modes built for fast, efficient patient flow and pharmacy dispensing.`,
     logo: '/products/aarogya.png',
-    image: '/products/arogya cmss.png',
+    image: '/products/CMS.webp',
     loginUrl: 'https://artha.cornortech.com',
     pending: 'Coming Soon',
     features: [
