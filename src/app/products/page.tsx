@@ -1692,12 +1692,12 @@ export default function ProductsPage() {
 
                   <div className="mt-8 flex flex-wrap items-center gap-3">
                     <a
-                      href={primaryHref}
+                      href="https://wa.me/9779828750115?text=Hello%2C%20I%20want%20Atithi%20RMS%20for%20my%20business.%20Could%20you%20please%20explain%20the%20system%20and%20available%20packages%3F"
                       target={isComingSoon ? undefined : '_blank'}
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 rounded-xl bg-linear-to-r from-purple-600 via-violet-600 to-indigo-600 px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-purple-500/30 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-purple-500/40 active:scale-[0.98]"
                     >
-                      {isComingSoon ? 'Notify me at launch' : 'See it in action'}
+                      {isComingSoon ? 'Notify me at launch' : 'Request a Demo'}
                       <ArrowRight />
                     </a>
                     <button
@@ -1978,12 +1978,17 @@ export default function ProductsPage() {
 
                 <div className="grid items-stretch gap-6 lg:grid-cols-3">
                   {(activeProduct.pricing ?? []).map((tier) => {
-                    const ctaHref = isComingSoon
-                      ? notifyHref
-                      : tier.name === 'Enterprise'
-                      ? `mailto:info@cornortech.com?subject=${encodeURIComponent(`Enterprise enquiry: ${activeProduct.name}`)}`
-                      : activeProduct.loginUrl;
-                    const external = !ctaHref.startsWith('mailto:');
+                    const whatsappHref = `https://wa.me/9779828750115?text=${encodeURIComponent(
+  `Hello, I'm interested in the "${tier.name}" plan for ${activeProduct.name}. Could you please provide the details and help me get started?`
+)}`;
+
+const ctaHref = isComingSoon
+  ? notifyHref
+  : tier.name === 'Enterprise'
+  ? `mailto:info@cornortech.com?subject=${encodeURIComponent(`Enterprise enquiry: ${activeProduct.name}`)}`
+  : whatsappHref;
+
+const external = !ctaHref.startsWith('mailto:');
                     return (
                       <div
                         key={tier.name}
@@ -2062,7 +2067,7 @@ export default function ProductsPage() {
                         </ul>
 
                         <a
-                          href={ctaHref}
+                          href="https://wa.me/9779828750115?text=Hello%2C%20I%27m%20interested%20in%20a%20custom%20Enterprise%20version%20of%20Atithi%20RMS%20for%20my%20business.%20Could%20you%20please%20discuss%20the%20available%20options%20and%20pricing%3F"
                           target={external ? '_blank' : undefined}
                           rel="noopener noreferrer"
                           className={`relative flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-black transition-all active:scale-[0.98] ${
