@@ -2,47 +2,19 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
 
 interface ProductCardProps {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  variant: 'left' | 'right';
+  name: string;
+  tagline: string;
+  category: string;
+  desc: string;
+  highlights: string[];
+  logo: string;
+  pending?: string;
   delay?: number;
 }
 
-const ProductCard = ({ title, description, image, link, variant, delay = 0 }: ProductCardProps) => {
-  const isLeft = variant === 'left';
-
-  // Design tokens based on variant
-  const theme = isLeft ? {
-    gradient: 'bg-linear-to-br from-[#6a5acd] to-[#9370db]',
-    glassBg: 'bg-linear-to-b from-white/70 to-white/20',
-    titleColor: 'text-[#3c2f80]',
-    textColor: 'text-[#3c2f80]/80',
-    circleBg: 'bg-[#9370db]/30',
-    perspective: '[perspective:1000px]',
-    rotateHover: 'group-hover:[transform:rotate3d(1,1,0,30deg)]',
-    logoSide: 'right-0',
-    glassRounded: 'rounded-tr-[100%]',
-    glassBorder: 'border-l border-b',
-    shadowHover: 'group-hover:shadow-[rgba(30,30,60,0.3)_30px_50px_25px_-40px,rgba(30,30,60,0.15)_0px_25px_30px_0px]',
-  } : {
-    gradient: 'bg-linear-to-br from-[#6a5acd] to-[#9370db]',
-    glassBg: 'bg-linear-to-b from-white/70 to-white/20',
-    titleColor: 'text-[#3c2f80]',
-    textColor: 'text-[#3c2f80]/80',
-    circleBg: 'bg-[#9370db]/30',
-    perspective: '[perspective:1200px]',
-    rotateHover: 'group-hover:[transform:rotate3d(1,-1,0,25deg)]',
-    logoSide: 'left-0',
-    glassRounded: 'rounded-tl-[100%]',
-    glassBorder: 'border-r border-b',
-    shadowHover: 'group-hover:shadow-[rgba(30,30,60,0.3)_30px_50px_25px_-40px,rgba(30,30,60,0.15)_0px_25px_30px_0px]',
-  };
-
+const ProductCard = ({ name, tagline, category, desc, highlights, logo, pending, delay = 0 }: ProductCardProps) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
 
@@ -52,69 +24,65 @@ const ProductCard = ({ title, description, image, link, variant, delay = 0 }: Pr
       initial={{ opacity: 0, y: 30 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative w-full max-w-85 h-100 mx-auto ${theme.perspective} group`}
+      className="flex w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.25rem)]"
     >
-      <div className={`relative h-full w-full rounded-[50px] ${theme.gradient} transition-all duration-500 transform-3d shadow-none ${theme.rotateHover} ${theme.shadowHover}`}>
-
-        {/* Glass Layer */}
-        <div className={`absolute inset-2 ${theme.glassBg} ${theme.glassRounded} rounded-[55px] ${theme.glassBorder} border-white/50 transform-[translate3d(0,0,25px)] transition-all duration-500 transform-3d`} />
-
-        {/* Logo Circles with Demo Link */}
-        <div className={`absolute ${theme.logoSide} top-0 transform-3d`}>
-          {[170, 140, 110, 80, 50].map((size, i) => (
-            <div
-              key={i}
-              className={`absolute aspect-square rounded-full ${theme.circleBg} shadow-[rgba(100,100,111,0.2)_${isLeft ? '-10px' : '10px'}_10px_20px_0px] transition-all duration-500`}
-              style={{
-                width: `${size}px`,
-                top: `${[8, 10, 17, 23, 30][i]}px`,
-                [isLeft ? 'right' : 'left']: `${[8, 10, 17, 23, 30][i]}px`,
-                transform: `translate3d(0, 0, ${[20, 40, 60, 80, 100][i]}px)`,
-                transitionDelay: `${i * 0.1}s`,
-                zIndex: i + 1
-              }}
-            >
-              {i === 4 && (
-                <Link 
-                  href={link} 
-                  target={link.startsWith('http') ? "_blank" : undefined}
-                  onClick={(e) => {
-                    if (link === '#chat') {
-                      e.preventDefault();
-                      window.dispatchEvent(new CustomEvent('openChatWidget'));
-                    }
-                  }}
-                  className="flex flex-col items-center justify-center h-full w-full group/demo"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 fill-white transition-transform group-hover/demo:scale-125">
-                    <path fillRule="evenodd" d="M4.5 5.653c0-1.426 1.529-2.33 2.779-1.643l11.54 6.348c1.295.712 1.295 2.573 0 3.285L7.28 19.991c-1.25.687-2.779-.217-2.779-1.643V5.653z" clipRule="evenodd" />
-                  </svg>
-                  <span className="text-[8px] font-black text-white uppercase tracking-tighter opacity-0 group-hover/demo:opacity-100 transition-opacity">Demo</span>
-                </Link>
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Image Container (Floating) */}
-        <div
-          className={`absolute inset-x-8 top-10 h-40 rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 transform-[translate3d(0,0,35px)] ${isLeft ? 'group-hover:transform-[translate3d(-15px,-5px,70px)]' : 'group-hover:transform-[translate3d(15px,-5px,70px)]'}`}
-        >
-          <Image
-            src={image}
-            alt={title}
-            fill
-            className="object-cover transition-transform duration-700 group-hover:scale-110"
+      <Link
+        href="/products"
+        className="group relative flex w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-gray-200/80 bg-white text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-[#9333EA]/30 hover:shadow-[0_20px_50px_rgba(147,51,234,0.12)]"
+      >
+        {/* Logo / Header Image */}
+        <div className="relative h-62 w-full shrink-0 overflow-hidden bg-slate-950">
+          <img
+            src={logo}
+            alt={`${name} Logo`}
+            className="absolute inset-0 h-full w-full object-contain object-center p-1 transition-transform duration-500 group-hover:scale-105"
+            onError={(e) => {
+              (e.target as HTMLImageElement).onerror = null;
+              (e.target as HTMLImageElement).style.opacity = '0.15';
+            }}
           />
-          <div className="absolute inset-0 bg-linear-to-t from-black/40 via-transparent to-transparent" />
+
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+
+          {/* Category badge */}
+          <div className="absolute top-0.5 left-1.3 z-10">
+            <span className="rounded-full border border-white/20 bg-black px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-sm backdrop-blur-md">
+              {category}
+            </span>
+          </div>
+
+          {/* Coming Soon badge */}
+          {pending && (
+            <div className="absolute right-4 top-4 z-20">
+              <span className="flex items-center gap-1.5 rounded-full border border-purple-400/30 bg-[#9333EA] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-[#9333EA]/40">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
+                {pending}
+              </span>
+            </div>
+          )}
+
+          {/* Title & tagline */}
+          <div className="absolute bottom-4 left-4 right-4 z-10">
+            <h3 className="mb-1 text-xl font-black leading-tight text-white transition-colors group-hover:text-purple-200">{name}</h3>
+            <p className="line-clamp-1 text-xs font-bold text-white/80">{tagline}</p>
+          </div>
         </div>
 
-        {/* Content */}
-        <div className={`absolute inset-0 p-8 pt-55 ${isLeft ? 'pr-12' : 'pl-12'} transform-[translate3d(0,0,26px)] transition-all duration-500`}>
-          <h3 className={`text-2xl font-black ${theme.titleColor} mb-2 leading-tight`}>{title}</h3>
-          <p className={`text-sm ${theme.textColor} leading-relaxed font-bold`}>{description}</p>
+        {/* Body */}
+        <div className="flex flex-1 flex-col bg-white p-5 lg:p-6">
+          <p className="mb-4 line-clamp-3 text-sm font-medium leading-relaxed text-gray-600">{desc}</p>
+
+          <div className="mb-5 flex flex-wrap gap-1.5">
+            {highlights.slice(0, 3).map((h) => (
+              <span key={h} className="rounded-lg border border-[#9333EA]/10 bg-[#9333EA]/5 px-2.5 py-1 text-[10px] font-bold text-[#9333EA]">
+                {h}
+              </span>
+            ))}
+          </div>
+
+          
         </div>
-      </div>
+      </Link>
     </motion.div>
   );
 };
@@ -123,111 +91,125 @@ const Products = () => {
   const sectionRef = useRef(null);
   const inView = useInView(sectionRef, { once: true, margin: '-80px' });
 
-  const products = [
+  const products: Omit<ProductCardProps, 'delay'>[] = [
     {
-      title: "POS System",
-      description: "Smart inventory management, farmer-to-customer supply chain, and offline-friendly ordering for rural markets.",
-      image: "/projects/pos.jpg",
-      link: "https://www.gaukotarkari.com",
-      variant: 'left' as const
+      name: 'Atithi RMS',
+      tagline: 'Restaurant Management, Simplified',
+      category: 'Hospitality Software',
+      desc: 'A complete restaurant management system built to handle orders, tables, kitchen workflow, and billing — all from one clean dashboard.',
+      highlights: ['Order & KOT Management', 'Table Management', 'Menu Management'],
+      logo: '/products/athiti.png',
     },
     {
-      title: "Cornortech AI",
-      description: "Advanced AI-driven analytics, predictive modeling, and intelligent automation tailored for your needs.",
-      image: "/products/cornortechAI.png",
-      link: "#chat",
-      variant: 'left' as const
+      name: 'Artha POS',
+      tagline: 'Point of Sale, Reimagined',
+      category: 'Retail Software',
+      desc: 'An offline-capable point-of-sale system for retail stores, grocery shops, supermarkets, and beverage outlets — built for fast billing, accurate inventory, and clear business visibility.',
+      highlights: ['Offline Billing', 'Barcode Scanning', 'Inventory'],
+      logo: '/products/artha pos.png',
     },
     {
-      title: "Cornor SMS",
-      description: "Reliable, scalable SMS solutions — bulk messaging, OTP, API integration, and more for your business.",
-      image: "/products/cornor_sms.png",
-      link: "/sms-vendor",
-      variant: 'left' as const
-    }
+      name: 'Cornor Tech AI',
+      tagline: 'AI-based solutions & automation products and services.',
+      category: 'Artificial Intelligence',
+      desc: 'Cutting-edge AI-based solutions, intelligent automation products, and custom software services built to streamline workflows, enhance decision-making, and scale business operations.',
+      highlights: ['AI Automation', 'Custom Solutions', 'Workflow Pipelines'],
+      logo: '/products/conor ai.png',
+    },
+    {
+      name: 'Cornor SMS',
+      tagline: 'SMS platform for bulk messaging, OTP and API integrations.',
+      category: 'Communication & Messaging',
+      desc: 'A reliable, scalable SMS platform built for businesses — offering high-volume bulk promotions, secure transactional OTPs, and robust RESTful API integrations.',
+      highlights: ['Bulk SMS', 'Transactional OTP', 'API Integration'],
+      logo: '/products/cornor ss.png',
+    },
+    {
+      name: 'Arogya CMS',
+      tagline: 'Clinic Management System.',
+      category: 'Healthcare',
+      desc: 'An offline-capable clinic management system for medical practices, healthcare centers, and outpatient clinics — built for fast patient billing, accurate medical inventory, and clear practice visibility.',
+      highlights: ['Offline Billing', 'Barcode Scanning', 'Medical Inventory'],
+      logo: '/products/aarogya.png',
+      pending: 'Coming Soon',
+    },
   ];
 
   return (
     <section
       id="products"
       ref={sectionRef}
-      className="relative py-24 lg:py-36 bg-[#faf8ff] overflow-hidden font-sans"
+      className="relative overflow-hidden bg-[#faf8ff] py-24 font-sans lg:py-36"
     >
-      {/* ── Subtle dot grid background ── */}
+      {/* Dot grid */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-40"
-        style={{
-          backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)',
-          backgroundSize: '32px 32px',
-        }}
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{ backgroundImage: 'radial-gradient(circle, #c084fc 1px, transparent 1px)', backgroundSize: '32px 32px' }}
         aria-hidden="true"
       />
 
-      {/* ── Ambient blobs ── */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden" aria-hidden="true">
-        <div
-          className="absolute -top-40 -left-40 w-150 h-150 rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }}
-        />
-        <div
-          className="absolute -bottom-40 -right-20 w-125 h-125 rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }}
-        />
+      {/* Ambient blobs */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -left-40 -top-40 h-150 w-150 rounded-full" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.10) 0%, transparent 70%)' }} />
+        <div className="absolute -bottom-40 -right-20 h-125 w-125 rounded-full" style={{ background: 'radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%)' }} />
       </div>
 
-      {/* ── Giant ghost text ── */}
+      {/* Ghost text */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ duration: 1.4, delay: 0.15 }}
-        className="absolute top-6 lg:top-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-[18vw] font-black uppercase tracking-tighter text-[#9333EA]/5 select-none pointer-events-none leading-none"
+        className="pointer-events-none absolute left-1/2 top-6 -translate-x-1/2 select-none whitespace-nowrap text-[18vw] font-black uppercase leading-none tracking-tighter text-[#9333EA]/5 lg:top-10"
         aria-hidden="true"
       >
         Products
       </motion.p>
 
-      <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        {/* ── Section headline ── */}
-        <div className="mb-14 lg:mb-24 text-center lg:text-left">
+      <div className="container relative z-10 mx-auto px-4 lg:px-8">
+        {/* Headline */}
+        <div className="mb-14 text-center lg:mb-24 lg:text-left">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55 }}
-            className="flex items-center gap-3 mb-5 justify-center lg:justify-start"
+            className="mb-5 flex items-center justify-center gap-3 lg:justify-start"
           >
-            <div className="h-px w-8 bg-[#9333EA] rounded-full" />
-            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">
-              Our Products
-            </span>
+            <div className="h-px w-8 rounded-full bg-[#9333EA]" />
+            <span className="text-[11px] font-bold uppercase tracking-[0.25em] text-[#9333EA]">Our Products</span>
           </motion.div>
 
           <motion.h2
             initial={{ opacity: 0, y: 22 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, delay: 0.08 }}
-            className="text-4xl lg:text-6xl xl:text-7xl font-black leading-[0.95] tracking-tight"
+            className="text-4xl font-black leading-[0.95] tracking-tight lg:text-6xl xl:text-7xl"
           >
             <span className="text-[#1e003a]">Digital</span>
             <br />
-            <span
-              className="text-transparent bg-clip-text bg-linear-to-r from-[#9333EA] via-[#6366f1] to-[#a855f7]"
-            >
-              Solutions
-            </span>
+            <span className="bg-linear-to-r from-[#9333EA] via-[#6366f1] to-[#a855f7] bg-clip-text text-transparent">Solutions</span>
             <br />
             <span className="text-[#1e003a]/25">For the Future.</span>
           </motion.h2>
         </div>
 
-        {/* ── Products Grid ── */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 max-w-6xl mx-auto items-center justify-items-center">
+        {/* Cards (same layout as the products page) */}
+        <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-6 lg:gap-7">
           {products.map((product, idx) => (
-            <ProductCard
-              key={product.title}
-              {...product}
-              delay={0.15 + (idx * 0.15)}
-            />
+            <ProductCard key={product.name} {...product} delay={0.1 + idx * 0.1} />
           ))}
+        </div>
+
+        {/* View all */}
+        <div className="mt-14 text-center">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 rounded-xl bg-linear-to-br from-[#6a5acd] to-[#9370db] px-7 py-3.5 text-sm font-black text-white shadow-lg shadow-[#9333EA]/30 transition-all hover:brightness-110"
+          >
+            View All Products
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
         </div>
       </div>
     </section>
