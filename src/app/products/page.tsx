@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from 'react';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import CTA from '@/components/ui/CTA';
+import { DashainOfferSpotlight, FESTIVE_OFFER_ACTIVE, Kite, Marigold } from '@/components/Dashain';
 
 // ==== Product Data ====
 
@@ -50,37 +51,50 @@ const PRODUCTS: Product[] = [
     name: 'Atithi RMS',
     tagline: 'Restaurant Management, Simplified',
     category: 'Hospitality Software',
-    desc: 'A complete restaurant management system built to handle orders, tables, kitchen workflow, and billing — all from one clean dashboard.',
-    longDesc: `Atithi RMS is designed for restaurants, cafes, and hotels that want to move away from paper-based order taking and disconnected billing systems. From the moment an order is placed at the table to when the kitchen prepares it and the final bill is generated, Atithi RMS keeps every step connected and visible in real time.
+    desc: 'One system for your whole restaurant — orders, tables, kitchen (KOT), IRD-ready billing with VAT, online orders with delivery riders, stock, staff attendance and customer loyalty. Works in English and Nepali, even when the internet goes down.',
+    longDesc: `Atithi RMS is made for restaurants, cafes, hotels and cloud kitchens in Nepal that want to stop using paper and disconnected billing. From the moment a guest orders — at the table, by phone or on your own online ordering page — until the bill is paid, every step is connected and updates live on every device.
 
-At the center of the system is a live dashboard that gives managers an instant snapshot of the business through clear, straightforward numbers — today's revenue and today's total sales, alongside lifetime totals for revenue and orders. So if you've been using the system for 3 days, the dashboard reflects the combined revenue and orders across all 3 days, not just today, giving owners a clear picture of overall performance at any moment. A dedicated Total Sales view breaks this down further, showing daily sales figures with the option to print a daily sales report for accounting or record-keeping.
+At the center of the system is a live dashboard that shows today's revenue, today's sales and lifetime totals for revenue and orders, with dine-in and delivery revenue shown separately. The business day starts at 5 AM, so late-night sales after midnight are still counted on the right day. A dedicated Total Sales view shows daily sales with Nepali (BS) dates and lets you print a daily sales report for accounting or record-keeping.
 
-On the floor, Table Management gives staff a visual layout of every table, color-coded as Available, Occupied, Reserved, or Out of Service, with statuses updating instantly as guests are seated or leave. Orders are built through Create Order by browsing the menu and adding items in a few taps, and every order — whether being prepared, ready, or served — is visible in real time through Order Tracking. The moment an order is placed, it appears on the Kitchen Display, so the chef always knows what to prepare next, and can mark dishes as ready the instant they're done cooking, keeping the kitchen and the floor perfectly in sync.
+On the floor, Table Management shows every table as Available, Occupied, Reserved or Out of Service, updating instantly as guests are seated or leave. Waiters take orders by table or by customer name and phone — saved customers fill in automatically, and the order can be marked as already paid by Cash, eSewa, Khalti or Fonepay. The moment an order is placed, it appears on the Kitchen Display and the KOT prints with the customer's phone number. With one switch in Settings, drinks can be kept off the KOT, and drinks-only orders go straight to billing.
 
-Billing is just as streamlined. Staff can generate itemized bills instantly through Create Bill, or save a bill as Pending if payment isn't settled right away — so nothing gets lost or forgotten while a customer steps out or a group decides how to split the cost. Every bill generated is stored permanently in Billing & VAT Audit, giving owners a complete, searchable record for accounting and VAT purposes. Behind the scenes, Stock Management lets the team track ingredient and supply levels for the restaurant or cafe, helping avoid running out of popular items mid-shift, while Menu Management makes it easy to add, update, or remove dishes as the menu evolves.
+Billing is IRD-ready. Create Bill makes sequential, itemized bills with discount, VAT (set once in Settings) and an optional delivery charge. Customers can pay by Cash, eSewa, Khalti or Fonepay — or split one bill across several methods — and your payment QR is shown on screen and printed on the bill. Bills can be saved as Pending when payment is not settled yet, or as Delivery bills that wait until the rider brings the money back. A wrong bill is never deleted: it is cancelled with a reason and a credit note, and every bill stays in Billing & VAT Audit for accounting and VAT.
 
-Atithi RMS also supports full staff role management. Only the manager can access Staff Management to create accounts for waiters, kitchen staff, and cashiers, and each role is limited to only the pages relevant to their job — keeping operations secure and every team member focused on their own responsibilities. A Settings page rounds out the system, letting owners manage restaurant details, update login credentials, and adjust other preferences whenever needed.
+Online ordering is built in. Customers order from your restaurant's own ordering page with menu photos, you confirm, the kitchen cooks, and a rider delivers using the Rider App while the customer follows the order live. Delivery earnings, orders per day and rider performance are shown in their own reports. If a phone number had cancelled bills before, Create Order warns staff to take payment first and shows every cancel reason.
 
-Whether you're running a single outlet or managing multiple branches, Atithi RMS scales with your business, giving owners the tools to reduce order errors, speed up table turnover, and understand exactly where their revenue is coming from.`,
+Guests can also scan the QR code on their table to see the menu with photos and tap Call Waiter — staff get a sound alert in Notifications with the table number. Loyalty points reward regular customers, Stock Management tracks opening, sold and closing stock with low-stock alerts and one-tap restock, and Menu Management makes it easy to add dishes with photos, prices, categories and add-ons.
+
+Each staff member gets their own login — Manager, Waiter, Kitchen Staff or Cashier — and sees only the pages for their job, while fingerprint Attendance records check-in, check-out, late and overtime with Excel download. If the internet drops, orders and bills are saved on the device and sync automatically when it comes back. Atithi RMS works in English and Nepali, can be installed on phones, tablets and computers like an app, and grows with you from a single outlet to multiple branches.`,
     logo: '/products/athiti.png',
     image: '/products/atithi-rms.png',
     loginUrl: 'https://atithi.cornortech.com',
     features: [
-      { title: 'Dashboard', desc: "View today's revenue, today's total sales, and lifetime totals for revenue and orders.", image: '/products/atithi/dashboard.png' },
-      { title: 'Total Sales', desc: 'View daily sales summaries and print daily sales reports at any time.', image: '/products/atithi/total-sales.png' },
-      { title: 'Pending Bills', desc: 'Save any bill as pending and come back to complete it later without losing order details.', image: '/products/atithi/pending-bills.png' },
-      { title: 'Create Bill', desc: 'Generate accurate, itemized bills quickly for any table or order.', image: '/products/atithi/create-bill.png' },
-      { title: 'Kitchen Display (KOT)', desc: 'New orders appear instantly for the chef to prepare, and can be marked ready once cooking is complete.', image: '/products/atithi/kot.png' },
+      { title: 'Dashboard', desc: "Today's revenue and sales, lifetime totals, and dine-in and delivery revenue shown separately. The business day starts at 5 AM.", image: '/products/atithi/dashboard.png' },
+      { title: 'Total Sales', desc: 'Daily sales summaries with Nepali (BS) dates — print the daily sales report any time.', image: '/products/atithi/total-sales.png' },
+      { title: 'Pending Bills', desc: 'Save a bill as pay-later and collect it when the customer is ready, without losing any order details.', image: '/products/atithi/pending-bills.png' },
+      { title: 'Create Bill', desc: 'IRD-ready bills with discount, VAT, delivery charge and split payment by Cash, eSewa, Khalti or Fonepay.', image: '/products/atithi/create-bill.png' },
+      { title: 'Kitchen Display (KOT)', desc: 'New orders appear instantly with an auto-printed KOT. The chef marks dishes ready — drinks can be kept off the KOT.', image: '/products/atithi/kot.png' },
       { title: 'Table Management', desc: 'Track every table as Available, Occupied, Reserved, or Out of Service.', image: '/products/atithi/tables.png' },
-      { title: 'Create Order', desc: 'Browse the menu and create a new order in just a few taps.', image: '/products/atithi/create-order.png' },
-      { title: 'Order Tracking', desc: 'See every order at a glance, whether it is being prepared, ready, or already served.', image: '/products/atithi/order-tracking.png' },
-      { title: 'Menu Management', desc: 'Add, update, delete, and view menu items with full control over pricing.', image: '/products/atithi/menu-management.png' },
-      { title: 'Stock Management', desc: 'Record and track stock levels for your restaurant or cafe ingredients.', image: '/products/atithi/stock-management.png' },
-      { title: 'Billing & VAT Audit', desc: 'View a complete record of every bill generated, ready for accounting.', image: '/products/atithi/vat-audit.png' },
-      { title: 'Staff Management', desc: 'Managers can create accounts for waiters, kitchen staff, and cashiers.', image: '/products/atithi/staff.png' },
-      { title: 'Settings', desc: 'Manage restaurant details, update your ID and password, and configure preferences.', image: '/products/atithi/settings.png' },
+      { title: 'Create Order', desc: 'Order by table or by customer name and phone. Saved customers fill in, and you can mark the order as already paid.', image: '/products/atithi/create-order.png' },
+      { title: 'Order Tracking', desc: 'Every order at a glance — pending, preparing, ready or served — including online orders.', image: '/products/atithi/order-tracking.png' },
+      { title: 'Menu Management', desc: 'Add dishes with photos, prices, categories and add-ons. Photos show on the online order page and the table QR menu.', image: '/products/atithi/menu-management.png' },
+      { title: 'Stock Management', desc: 'Track opening, sold and closing stock with low-stock alerts — and restock in one tap when new stock arrives.', image: '/products/atithi/stock-management.png' },
+      { title: 'Billing & VAT Audit', desc: 'Every bill ever made, searchable for accounting. Wrong bills are cancelled with a reason and a credit note, never deleted.', image: '/products/atithi/vat-audit.png' },
+      { title: 'Staff Management', desc: 'Create logins for waiters, kitchen staff and cashiers — each role sees only its own pages.', image: '/products/atithi/staff.png' },
+      { title: 'Settings', desc: 'Restaurant details, password, payment QR, table QR, loyalty, and feature switches like VAT and drinks-off-KOT.', image: '/products/atithi/settings.png' },
+      { title: 'Online Ordering & Delivery', desc: "Customers order from your restaurant's own page with menu photos. Orders come straight into RMS and the kitchen." },
+      { title: 'Rider App & Live Tracking', desc: 'Riders log in on their phone with a PIN and update each delivery, while customers follow their order live.' },
+      { title: 'Delivery Bills & Reports', desc: 'Delivery charge on orders and bills, rider-collected bills kept separately, and delivery earnings and rider performance reports.' },
+      { title: 'Table QR Menu & Call Waiter', desc: 'Guests scan the QR on their table to see the menu with photos and call a waiter — staff get a sound alert.' },
+      { title: 'Payment QR & Split Payment', desc: 'eSewa, Khalti and Fonepay QR shown on screen and on the bill. One bill can be paid by more than one method.' },
+      { title: 'Customer Loyalty Points', desc: 'Regular guests collect points on every bill and redeem them for rewards you choose.' },
+      { title: 'Saved Customers & Cancelled-Bill Warning', desc: 'Type a phone number and the name and address fill in. If that customer had cancelled bills, staff see “Take payment first” and the reasons.' },
+      { title: 'Staff Attendance (Fingerprint)', desc: 'Staff check in and out with a fingerprint machine. See late and overtime, and download Excel reports.' },
+      { title: 'Works Offline', desc: 'Internet gone? Keep taking orders and bills — everything syncs automatically when it comes back.' },
+      { title: 'VAT & Feature Settings', desc: 'Turn VAT on and set the rate once, and switch features like drinks-off-KOT on or off for your restaurant.' },
+      { title: 'English & Nepali', desc: 'Switch the whole system between English and Nepali, with Nepali (BS) dates on bills. Install it on any device like an app.' },
     ],
-    highlights: ['Order & KOT Management', 'Table Management', 'Menu Management', 'Kitchen Display System', 'Order Tracking', 'Billing & VAT', 'Staff Roles', 'Stock Tracking'],
+    highlights: ['Order & KOT Management', 'Kitchen Display System', 'IRD Billing & VAT', 'Online Orders & Delivery', 'Rider App', 'Table QR Menu', 'eSewa · Khalti · Fonepay QR', 'Customer Loyalty', 'Stock Tracking', 'Fingerprint Attendance', 'English & Nepali', 'Works Offline'],
     pricing: [
       {
         name: 'Demo',
@@ -104,6 +118,12 @@ Whether you're running a single outlet or managing multiple branches, Atithi RMS
           'Billing & VAT Audit Logs',
           'Role-Based Staff Management',
           'System & Outlet Settings',
+          'Online Orders, Rider App & Live Tracking',
+          'Table QR Menu & Call Waiter',
+          'eSewa · Khalti · Fonepay QR & Split Payment',
+          'Customer Loyalty Points',
+          'Fingerprint Attendance',
+          'Works Offline · English & Nepali',
           'Unlimited Test Orders',
         ],
         cta: 'Start Free Demo',
@@ -132,6 +152,12 @@ Whether you're running a single outlet or managing multiple branches, Atithi RMS
           'Billing & VAT Audit Logs',
           'Role-Based Staff Management',
           'System & Outlet Settings',
+          'Online Orders, Rider App & Live Tracking',
+          'Table QR Menu & Call Waiter',
+          'eSewa · Khalti · Fonepay QR & Split Payment',
+          'Customer Loyalty Points',
+          'Fingerprint Attendance',
+          'Works Offline · English & Nepali',
           'Unlimited Test Orders',
           'Priority support',
         ],
@@ -214,6 +240,8 @@ Whether it's a single small shop or a growing chain of retail outlets, Artha POS
         name: 'Premium',
         tag: 'Best Value',
         price: 'NPR 11,111',
+        excludesVat: true,
+        offerLabel: 'Dashain Offer',
         originalPrice: 'NPR 20,000',
         period: '/ year',
         description: 'Full offline-first POS with inventory, staff, and customer loyalty built in.',
@@ -1345,6 +1373,20 @@ export default function ProductsPage() {
     };
   }, [activeProduct]);
 
+    // Open a product from the URL (e.g. /products#artha-pos) and jump to its pricing
+  const openOffer = (id: string) => {
+    const p = PRODUCTS.find((x) => x.id === id);
+    if (!p) return;
+    setActiveProduct(p);
+    setTimeout(() => document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 450);
+  };
+
+  useEffect(() => {
+    const id = window.location.hash.replace('#', '');
+    if (id && PRODUCTS.some((x) => x.id === id)) openOffer(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const closeModal = () => {
     setIsVisible(false);
     setTimeout(() => setActiveProduct(null), 200);
@@ -1427,8 +1469,26 @@ export default function ProductsPage() {
               Talk to Us
             </a>
           </div>
+
+          {FESTIVE_OFFER_ACTIVE && (
+            <a
+              href="#dashain-offer"
+              className="group mt-8 inline-flex items-center gap-2.5 rounded-full border border-[#FCD34D]/40 bg-linear-to-r from-[#FCD34D]/15 via-[#F97316]/15 to-[#E11D48]/15 px-4 py-2 text-sm font-bold text-white shadow-[0_0_30px_-8px_rgba(252,211,77,0.6)] backdrop-blur-sm transition hover:border-[#FCD34D]/70"
+            >
+              <span aria-hidden="true">🪁</span>
+              <span className="text-[#FDE68A]">Dashain Offer:</span> Atithi RMS &amp; Artha POS Premium at NPR 11,111/yr
+              <span className="transition-transform group-hover:translate-y-0.5" aria-hidden="true">↓</span>
+            </a>
+          )}
         </div>
       </section>
+
+      {/* ==== Dashain Festive Offer ==== */}
+      {FESTIVE_OFFER_ACTIVE && (
+        <section className="bg-linear-to-b from-[#faf5ff] to-white px-4 pt-16 lg:pt-24">
+          <DashainOfferSpotlight onSelect={openOffer} className="mx-auto max-w-7xl" />
+        </section>
+      )}
 
       <CTA />
 
@@ -1498,6 +1558,20 @@ export default function ProductsPage() {
                     </div>
                   )}
 
+                                    {/* Dashain offer ribbon — top right */}
+                  {(() => {
+                    const t = product.pricing.find((x) => x.offerLabel);
+                    if (!t) return null;
+                    const pct = Math.round((1 - parseNpr(t.price) / parseNpr(t.originalPrice)) * 100);
+                    return (
+                      <div className="absolute top-10 right-3 z-20 sm:top-3">
+                        <span className="dashain-btn inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#1e003a] shadow-lg shadow-orange-500/40 ring-1 ring-white/40">
+                          <span aria-hidden="true">🪁</span> {t.offerLabel} · {pct}% off
+                        </span>
+                      </div>
+                    );
+                  })()}
+
                   {/* Product Title & Tagline overlay */}
                   <div className="absolute bottom-4 left-4 right-4 z-10">
                     <h3 className="text-xl font-black text-white leading-tight mb-1 group-hover:text-purple-200 transition-colors">
@@ -1518,6 +1592,26 @@ export default function ProductsPage() {
                       {product.desc}
                     </p>
                   )}
+
+                                    {/* Dashain festive price */}
+                  {(() => {
+                    const t = product.pricing.find((x) => x.offerLabel);
+                    if (!t) return null;
+                    return (
+                      <div className="relative mb-5 overflow-hidden rounded-2xl border border-orange-200/70 bg-linear-to-r from-orange-50 via-amber-50 to-rose-50 px-4 py-3">
+                        <Marigold size={44} className="pointer-events-none absolute -right-3 -top-3 opacity-25" />
+                        <p className="text-[10px] font-black uppercase tracking-[0.18em] text-orange-600">Dashain festive price</p>
+                        <div className="mt-1 flex flex-wrap items-baseline gap-x-2">
+                          <span className="text-xs font-bold text-slate-400 line-through decoration-2">{t.originalPrice}</span>
+                          <span className="text-xl font-black leading-none text-[#1e003a]">{t.price}</span>
+                          <span className="text-xs font-bold text-slate-500">{t.period}</span>
+                        </div>
+                        <p className="mt-1 text-[11px] font-bold text-rose-600">
+                          You save NPR {(parseNpr(t.originalPrice) - parseNpr(t.price)).toLocaleString('en-IN')} · Premium plan
+                        </p>
+                      </div>
+                    );
+                  })()}
 
                   {/* Highlights */}
                   {product.highlights && product.highlights.length > 0 && (
@@ -1981,11 +2075,29 @@ export default function ProductsPage() {
                   }
                 />
 
-                                {activeProduct.pricing.some((t) => t.offerLabel) && (
-                  <div className="mb-10 flex items-center justify-center gap-3 rounded-2xl border border-rose-200 bg-linear-to-r from-orange-50 via-rose-50 to-pink-50 px-5 py-3 text-center text-sm font-black text-rose-600">
-                    <span className="animate-bounce">🎊</span>
-                    Festive Offer is live. Get Premium at a special discounted price for a limited time.
-                    <span className="animate-bounce">🎊</span>
+                {activeProduct.pricing.some((t) => t.offerLabel) && (
+                  <div className="relative mb-12 overflow-hidden rounded-3xl border border-[#FCD34D]/30 bg-linear-to-r from-[#1e003a] via-[#3b0f6b] to-[#7a1f3d] px-5 py-5 shadow-[0_20px_50px_-20px_rgba(249,115,22,0.5)] sm:px-7">
+                    <div className="pointer-events-none absolute -right-10 -top-16 h-48 w-48 rounded-full bg-[#F97316]/25 blur-3xl" />
+                    <div className="relative flex flex-col items-center gap-4 text-center sm:flex-row sm:text-left">
+                      <div className="dashain-kite hidden shrink-0 sm:block">
+                        <Kite className="w-10" />
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FDE68A]">Dashain Festive Offer · Limited time</p>
+                        <p className="mt-1 text-base font-black text-white lg:text-lg">
+                          Get {activeProduct.name} Premium for{' '}
+                          <span className="dashain-gold-text">{activeProduct.pricing.find((t) => t.offerLabel)?.price}</span>{' '}
+                          <span className="text-sm font-bold text-white/45 line-through">{activeProduct.pricing.find((t) => t.offerLabel)?.originalPrice}</span>
+                        </p>
+                        <p className="font-deva mt-0.5 text-sm text-purple-100/75">दशैंको शुभकामनासहित विशेष छुट</p>
+                      </div>
+                      <span className="shrink-0 rounded-2xl bg-linear-to-br from-orange-400 to-rose-500 px-4 py-2 text-lg font-black text-white shadow-lg shadow-rose-500/30">
+                        {(() => {
+                          const t = activeProduct.pricing.find((x) => x.offerLabel)!;
+                          return Math.round((1 - parseNpr(t.price) / parseNpr(t.originalPrice)) * 100);
+                        })()}% OFF
+                      </span>
+                    </div>
                   </div>
                 )}
 
@@ -2026,7 +2138,7 @@ const savePercent = hasDiscount ? Math.round((saveAmount / originalNum) * 100) :
 
                                                 {hasDiscount && tier.offerLabel && (
                           <span className="absolute -top-3.5 right-7 z-10 inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-orange-500 via-rose-500 to-pink-500 px-3.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-rose-500/40">
-                            <span className="animate-pulse">🎉</span>
+                            <span className="animate-pulse">🪁</span>
                             {tier.offerLabel}
                           </span>
                         )}
@@ -2328,7 +2440,7 @@ const savePercent = hasDiscount ? Math.round((saveAmount / originalNum) * 100) :
 }
 
 // ===== FESTIVE OFFER SWITCH (paste at the very end of the file) =====
-const FESTIVE_OFFER_ON = true;          // true = festive offer shown, false = hidden
+const FESTIVE_OFFER_ON = FESTIVE_OFFER_ACTIVE; // controlled from src/components/Dashain.tsx
 const KEEP_DISCOUNT_PRICE = true;       // false = also hide strikethrough price + "You save" box
 
 if (!FESTIVE_OFFER_ON) {

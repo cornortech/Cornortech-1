@@ -4,6 +4,7 @@ import { HeroProps } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRef, useEffect, useState } from 'react';
+import { DashainSky, DashainChip } from '@/components/Dashain';
 
 
 // ====== Hero Section ======
@@ -129,6 +130,8 @@ const Hero = ({ bannerVisible }: HeroProps) => {
       {particles.map((p, i) => (
         <Particle key={i} {...p} />
       ))}
+
+            <DashainSky />
       </>
       {/* ===== End Background Layer ===== */}
 
@@ -143,6 +146,8 @@ const Hero = ({ bannerVisible }: HeroProps) => {
 
           {/* === Left: headline block === */}
           <div className="flex flex-col w-fit">
+
+            <DashainChip />
 
             {/* Line 1: "Cornor" */}
             <motion.h1

@@ -2,6 +2,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
+import { getDashainOffer, OfferRibbon, OfferPriceStrip, DashainOfferSpotlight } from '@/components/Dashain';
 
 interface ProductCardProps {
   name: string;
@@ -17,6 +18,7 @@ interface ProductCardProps {
 const ProductCard = ({ name, tagline, category, desc, highlights, logo, pending, delay = 0 }: ProductCardProps) => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-60px' });
+  const offer = getDashainOffer(name);
 
   return (
     <motion.div
@@ -27,7 +29,7 @@ const ProductCard = ({ name, tagline, category, desc, highlights, logo, pending,
       className="flex w-full sm:w-[calc(50%-0.75rem)] lg:w-[calc(33.333%-1.25rem)]"
     >
       <Link
-        href="/products"
+        href={offer ? `/products#${offer.id}` : '/products'}
         className="group relative flex w-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-gray-200/80 bg-white text-left transition-all duration-300 hover:-translate-y-1.5 hover:border-[#9333EA]/30 hover:shadow-[0_20px_50px_rgba(147,51,234,0.12)]"
       >
         {/* Logo / Header Image */}
@@ -61,6 +63,13 @@ const ProductCard = ({ name, tagline, category, desc, highlights, logo, pending,
             </div>
           )}
 
+                    {/* Dashain offer ribbon */}
+          {offer && (
+            <div className="absolute right-3 top-10 z-20 sm:top-3">
+              <OfferRibbon offer={offer} />
+            </div>
+          )}
+
           {/* Title & tagline */}
           <div className="absolute bottom-4 left-4 right-4 z-10">
             <h3 className="mb-1 text-xl font-black leading-tight text-white transition-colors group-hover:text-purple-200">{name}</h3>
@@ -71,6 +80,9 @@ const ProductCard = ({ name, tagline, category, desc, highlights, logo, pending,
         {/* Body */}
         <div className="flex flex-1 flex-col bg-white p-5 lg:p-6">
           <p className="mb-4 line-clamp-3 text-sm font-medium leading-relaxed text-gray-600">{desc}</p>
+
+          
+          {offer && <OfferPriceStrip offer={offer} />}
 
           <div className="mb-5 flex flex-wrap gap-1.5">
             {highlights.slice(0, 3).map((h) => (
@@ -191,6 +203,9 @@ const Products = () => {
             <span className="text-[#1e003a]/25">For the Future.</span>
           </motion.h2>
         </div>
+
+        {/* Dashain festive offer */}
+        <DashainOfferSpotlight className="mx-auto mb-14 max-w-7xl lg:mb-20" />
 
         {/* Cards (same layout as the products page) */}
         <div className="mx-auto flex max-w-7xl flex-wrap justify-center gap-6 lg:gap-7">

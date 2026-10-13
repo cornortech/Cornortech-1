@@ -13,6 +13,7 @@ import TechStack from '@/components/TechStack'
 import ContactUs from '@/components/ContactUs'
 import AboutUs from '@/components/AboutUs'
 import Products from '@/components/Products'
+import { DashainGreeting, DashainWelcome, DashainOfferFloat } from '@/components/Dashain'
 import { useScrollAnimation, useSmoothScroll, useParallax } from '@/hooks/useAnimations';
 import { useState } from 'react';
 
@@ -25,10 +26,13 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
+            <DashainWelcome />
+                  <DashainOfferFloat />
       <TopBanner visible={bannerVisible} setVisible={setBannerVisible}/>
       <Header bannerVisible={bannerVisible} />
       <main>
         <Hero bannerVisible={bannerVisible}/>
+                <DashainGreeting />
         <Services/>
         <Products/>
         {/* <ScrollToTopButton/> */}

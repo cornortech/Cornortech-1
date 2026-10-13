@@ -197,3 +197,85 @@ input, textarea {
   -webkit-user-select: text;
   user-select: text;
 }
+
+/* =====================================================
+   DASHAIN FESTIVE STYLES
+   ===================================================== */
+.font-deva {
+  font-family: var(--font-deva), var(--font-inter), serif;
+}
+
+.dashain-gold-text {
+  background: linear-gradient(100deg, #FDE68A 0%, #FBBF24 25%, #FFF7D6 45%, #F59E0B 60%, #FDE68A 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: dashain-shimmer 4s linear infinite;
+  filter: drop-shadow(0 4px 18px rgba(249, 115, 22, 0.35));
+}
+
+.dashain-btn {
+  background: linear-gradient(110deg, #FCD34D 0%, #FB923C 45%, #FCD34D 90%);
+  background-size: 200% auto;
+  animation: dashain-shimmer 3.5s linear infinite;
+}
+
+.dashain-kite {
+  animation: dashain-kite 6s ease-in-out infinite;
+  transform-origin: 50% 90%;
+}
+
+.dashain-petal {
+  animation-name: dashain-fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  opacity: 0;
+}
+
+.dashain-strand {
+  transform-origin: top center;
+  animation: dashain-swing 3.2s ease-in-out infinite;
+}
+
+.dashain-marquee { animation: dashain-marquee 28s linear infinite; }
+.dashain-fade-in { animation: dashain-fade 0.4s ease-out both; }
+.dashain-pop { animation: dashain-pop 0.55s cubic-bezier(0.2, 0.9, 0.3, 1.25) both; }
+
+@keyframes dashain-shimmer { to { background-position: -200% center; } }
+
+@keyframes dashain-kite {
+  0%, 100% { transform: translate(0, 0) rotate(-6deg); }
+  25% { transform: translate(10px, -14px) rotate(4deg); }
+  50% { transform: translate(-6px, -6px) rotate(-2deg); }
+  75% { transform: translate(8px, 8px) rotate(6deg); }
+}
+
+@keyframes dashain-fall {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.9; }
+  50% { transform: translate(40px, 50vh) rotate(220deg); }
+  90% { opacity: 0.8; }
+  100% { transform: translate(-20px, 105vh) rotate(480deg); opacity: 0; }
+}
+
+@keyframes dashain-swing {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes dashain-marquee { to { transform: translateX(-50%); } }
+@keyframes dashain-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes dashain-pop {
+  from { opacity: 0; transform: translateY(24px) scale(0.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dashain-kite, .dashain-petal, .dashain-strand,
+  .dashain-marquee, .dashain-gold-text, .dashain-btn {
+    animation: none !important;
+  }
+  .dashain-petal { display: none; }
+}

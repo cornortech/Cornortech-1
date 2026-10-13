@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
 // import DisableInspect from '@/components/DisableInspect';
 import ChatWidget from "@/components/ChatWidget";
@@ -7,6 +7,13 @@ import ChatWidget from "@/components/ChatWidget";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const deva = Noto_Serif_Devanagari({
+  variable: "--font-deva",
+  subsets: ["devanagari"],
+  weight: ["600", "700"],
   display: "swap",
 });
 
@@ -79,7 +86,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} font-sans antialiased`}
+className={`${inter.variable} ${deva.variable} font-sans antialiased`}
       >
         {/* <DisableInspect />    */}
 
