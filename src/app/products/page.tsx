@@ -20,6 +20,7 @@ export type PricingTier = {
   price: string;           // "Free", "NPR 11,111"
   excludesVat?: boolean;
   originalPrice?: string;  // "NPR 20,000" -> shown struck-through
+    offerLabel?: string;     // e.g. "Festive Offer" -> shows a festive badge
   period?: string;         // "/ 7-day trial", "/ month", "one-time"
   description: string;
   features: string[];
@@ -112,6 +113,7 @@ Whether you're running a single outlet or managing multiple branches, Atithi RMS
         tag: 'Top Choice',
         price: 'NPR 11,111',
         excludesVat: true,
+        offerLabel: 'Festive Offer',
         originalPrice: 'NPR 20,000',
         period: '/ year',
         description: 'Everything a growing restaurant or multi-branch outlet needs to run at full speed.',
@@ -1257,6 +1259,9 @@ function SectionHeading({ eyebrow, title, subtitle, center = false }: { eyebrow:
   );
 }
 
+// Converts "NPR 11,111" -> 11111 (returns 0 for text like "Custom")
+const parseNpr = (s?: string) => Number((s || '').replace(/[^0-9]/g, '')) || 0;
+
 const FEATURE_TINTS = [
   'from-[#f3e8ff] via-[#faf5ff] to-white',
   'from-[#e0e7ff] via-[#eef2ff] to-white',
@@ -1976,6 +1981,14 @@ export default function ProductsPage() {
                   }
                 />
 
+                                {activeProduct.pricing.some((t) => t.offerLabel) && (
+                  <div className="mb-10 flex items-center justify-center gap-3 rounded-2xl border border-rose-200 bg-linear-to-r from-orange-50 via-rose-50 to-pink-50 px-5 py-3 text-center text-sm font-black text-rose-600">
+                    <span className="animate-bounce">🎊</span>
+                    Festive Offer is live. Get Premium at a special discounted price for a limited time.
+                    <span className="animate-bounce">🎊</span>
+                  </div>
+                )}
+
                 <div className="grid items-stretch gap-6 lg:grid-cols-3">
                   {(activeProduct.pricing ?? []).map((tier) => {
                     const whatsappHref = `https://wa.me/9779828750115?text=${encodeURIComponent(
@@ -1989,6 +2002,12 @@ const ctaHref = isComingSoon
   : whatsappHref;
 
 const external = !ctaHref.startsWith('mailto:');
+
+const originalNum = parseNpr(tier.originalPrice);
+const priceNum = parseNpr(tier.price);
+const hasDiscount = priceNum > 0 && originalNum > priceNum;
+const saveAmount = originalNum - priceNum;
+const savePercent = hasDiscount ? Math.round((saveAmount / originalNum) * 100) : 0;
                     return (
                       <div
                         key={tier.name}
@@ -2003,6 +2022,13 @@ const external = !ctaHref.startsWith('mailto:');
                             <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full border border-white/10" />
                             <div className="pointer-events-none absolute -bottom-16 -left-10 h-48 w-48 rounded-full bg-purple-500/20 blur-3xl" />
                           </>
+                        )}
+
+                                                {hasDiscount && tier.offerLabel && (
+                          <span className="absolute -top-3.5 right-7 z-10 inline-flex items-center gap-1.5 rounded-full bg-linear-to-r from-orange-500 via-rose-500 to-pink-500 px-3.5 py-1.5 text-[10px] font-black uppercase tracking-widest text-white shadow-lg shadow-rose-500/40">
+                            <span className="animate-pulse">🎉</span>
+                            {tier.offerLabel}
+                          </span>
                         )}
 
                         {tier.tag && (
@@ -2044,6 +2070,28 @@ const external = !ctaHref.startsWith('mailto:');
                             </span>
                           )}
                         </div>
+
+                        {hasDiscount && (
+                          <div
+                            className={`relative mb-5 flex items-center justify-between gap-3 rounded-2xl px-4 py-3 ${
+                              tier.highlighted
+                                ? 'bg-white/10 ring-1 ring-white/15'
+                                : 'bg-rose-50 ring-1 ring-rose-100'
+                            }`}
+                          >
+                            <div>
+                              <p className={`text-[10px] font-black uppercase tracking-widest ${tier.highlighted ? 'text-[#a3e635]' : 'text-rose-500'}`}>
+                                You save
+                              </p>
+                              <p className={`text-lg font-black leading-tight ${tier.highlighted ? 'text-white' : 'text-[#1e003a]'}`}>
+                                NPR {saveAmount.toLocaleString('en-IN')}
+                              </p>
+                            </div>
+                            <span className="rounded-xl bg-linear-to-br from-orange-400 to-rose-500 px-3 py-1.5 text-sm font-black text-white shadow-md shadow-rose-500/30">
+                              {savePercent}% OFF
+                            </span>
+                          </div>
+                        )}
 
                         <p className={`relative mb-6 text-sm font-medium leading-relaxed ${tier.highlighted ? 'text-purple-100/90' : 'text-slate-500'}`}>
                           {tier.description}
@@ -2278,3 +2326,21 @@ const external = !ctaHref.startsWith('mailto:');
     </main>
   );
 }
+
+// ===== FESTIVE OFFER SWITCH (paste at the very end of the file) =====
+const FESTIVE_OFFER_ON = true;          // true = festive offer shown, false = hidden
+const KEEP_DISCOUNT_PRICE = true;       // false = also hide strikethrough price + "You save" box
+
+if (!FESTIVE_OFFER_ON) {
+  PRODUCTS.forEach((p) =>
+    p.pricing.forEach((t) => {
+      delete t.offerLabel; // removes the 🎉 badge + banner
+      if (!KEEP_DISCOUNT_PRICE && parseNpr(t.originalPrice) > 0) {
+        delete t.originalPrice; // removes strikethrough price + "You save" box
+      }
+    })
+  );
+}
+
+
+//        offerLabel: 'Festive Offer',
