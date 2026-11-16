@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState, type CSSProperties } from 'react';
 //  DASHAIN FESTIVE KIT — Cornor Tech
 //  Turn the whole festive look ON / OFF from one place:
 // =====================================================================
-export const DASHAIN_MODE = true;
+export const DASHAIN_MODE = false;
 
 // Festive palette (works on top of the existing purple theme)
 const MARIGOLD = '#FF9F1C';
@@ -451,7 +451,7 @@ export function DashainWelcome() {
 //  DASHAIN FESTIVE OFFER — Atithi RMS & Artha POS
 //  One switch for the offer everywhere (home + products page):
 // =====================================================================
-export const FESTIVE_OFFER_ACTIVE = true;
+export const FESTIVE_OFFER_ACTIVE = false;
 
 const WHATSAPP_NUMBER = '9779828750115';
 
