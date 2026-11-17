@@ -283,7 +283,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <button
                 className="cm-option"
                 style={{ "--acc": "#22c55e", "--ibg": "rgba(34,197,94,0.1)", "--iborder": "rgba(34,197,94,0.2)" } as React.CSSProperties}
-                onClick={() => window.open(`https://wa.me/${CONTACT.whatsapp}`, "_blank")}
+                onClick={() => window.open("https://wa.me/9828750115", "_blank")}
               >
                 <div className="cm-opt-icon">
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="#22c55e">
