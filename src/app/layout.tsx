@@ -1,13 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Noto_Serif_Devanagari } from "next/font/google";
+import { Inter, Montserrat, Noto_Serif_Devanagari } from "next/font/google";
 import "./globals.css";
 // import DisableInspect from '@/components/DisableInspect';
-import ChatWidget from "@/components/ChatWidget";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+});
+
+// Display face for the Cornor Tech AI chat (matches the wordmark). Not preloaded:
+// it only downloads when the chat panel is opened.
+const ctDisplay = Montserrat({
+  variable: "--font-ct-display",
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+  preload: false,
 });
 
 const deva = Noto_Serif_Devanagari({
@@ -86,7 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-className={`${inter.variable} ${deva.variable} font-sans antialiased`}
+className={`${inter.variable} ${deva.variable} ${ctDisplay.variable} font-sans antialiased`}
       >
         {/* <DisableInspect />    */}
 
